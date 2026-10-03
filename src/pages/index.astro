@@ -1,0 +1,136 @@
+---
+import { Image } from 'astro:assets';
+import Base from '../layouts/Base.astro';
+import { projects } from '../data/projects';
+import { lastPush, formatDate } from '../lib/github';
+
+const email = 'luisenbcarva@gmail.com';
+const github = 'https://github.com/lbcrv';
+const pushes = await Promise.all(projects.map((p) => lastPush(p.repo)));
+const revised = formatDate(new Date());
+---
+
+<Base
+  title="Luis Enrique Bustamante / Full-stack developer"
+  description="Full-stack developer in Honduras building web apps and browser games with TypeScript, React, Next.js and Node. Open to junior and internship roles."
+>
+  <div class="grid-bg" aria-hidden="true"></div>
+  <a class="skip" href="#projects">Skip to projects</a>
+
+  <div class="sheet">
+  <header class="strip mono">
+    <span>LBCRV / FILE HN-0001</span>
+    <nav aria-label="Sections">
+      <a href="#projects">Projects</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <span class="hide-sm">REV {revised}</span>
+  </header>
+
+  <main>
+    <section class="intro">
+      <div class="plate">
+        <div class="row">
+          <span class="k mono">Name</span>
+          <h1 class="v name">Luis Enrique Bustamante</h1>
+        </div>
+        <dl>
+          <div class="row"><dt class="k mono">Role</dt><dd class="v">Full-stack developer</dd></div>
+          <div class="row"><dt class="k mono">Stack</dt><dd class="v">TypeScript, React, Next.js, Node</dd></div>
+          <div class="row"><dt class="k mono">Based</dt><dd class="v">Honduras</dd></div>
+          <div class="row open"><dt class="k mono">Open to</dt><dd class="v">Junior and internship roles</dd></div>
+        </dl>
+      </div>
+
+      <div class="about">
+        <p class="lead">
+          I build web apps and browser games, from the game logic and APIs to the interface, and deploy
+          them myself. Three of them are live below.
+        </p>
+
+        <div class="now">
+          <p class="label mono">Currently building</p>
+          <p>
+            A website for <span class="redact" aria-hidden="true"></span><span class="sr">a client</span>.
+            Client name and details after launch.
+          </p>
+        </div>
+
+        <ul class="contact">
+          <li><a class="btn" href={`mailto:${email}`}>Email <span class="mono">{email}</span></a></li>
+          <li><a class="btn" href={github}>GitHub <span class="mono">github.com/lbcrv</span></a></li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="projects" class="projects" aria-labelledby="projects-h">
+      <div class="section-head mono">
+        <h2 id="projects-h">Projects</h2>
+        <span>{projects.length} on record</span>
+      </div>
+
+      {projects.map((p, i) => (
+        <article class="entry" aria-labelledby={`p-${p.repo}`}>
+          <p class="no mono" aria-hidden="true">{String(i + 1).padStart(3, '0')}</p>
+
+          <div class="body">
+            <div class="title-row">
+              <h3 id={`p-${p.repo}`}>{p.name}</h3>
+              <p class="meta mono">
+                <span class="status">Live</span>
+                {pushes[i] && <span>Last push {formatDate(pushes[i])}</span>}
+              </p>
+            </div>
+
+            <p class="summary">{p.summary}</p>
+
+            <div class="facts">
+              <div>
+                <h4 class="mono">How it works</h4>
+                <ul class="points">
+                  {p.points.map((pt) => <li>{pt}</li>)}
+                </ul>
+              </div>
+              <div>
+                <h4 class="mono">Stack</h4>
+                <p>{p.stack.join(', ')}</p>
+                <h4 class="mono">Languages</h4>
+                <p>{p.languages}</p>
+              </div>
+            </div>
+
+            <p class="links">
+              <a class="btn" href={p.live}>Open live build</a>
+              <a class="btn" href={`${github}/${p.repo}`}>Source code</a>
+            </p>
+          </div>
+
+          <figure class="shot">
+            <Image
+              src={p.image}
+              alt={p.alt}
+              widths={[480, 800, 1200]}
+              sizes="(max-width: 960px) 100vw, 40vw"
+              loading={i === 0 ? 'eager' : 'lazy'}
+            />
+          </figure>
+        </article>
+      ))}
+    </section>
+
+    <section id="contact" class="closing" aria-labelledby="contact-h">
+      <h2 id="contact-h" class="mono">Contact</h2>
+      <p>
+        I'm looking for a junior or internship role. Email me at{' '}
+        <a href={`mailto:${email}`}>{email}</a>, or read more of my code on{' '}
+        <a href={github}>GitHub</a>.
+      </p>
+    </section>
+  </main>
+
+  <footer class="strip mono">
+    <span>END OF FILE</span>
+    <span>Built with Astro</span>
+  </footer>
+  </div>
+</Base>
