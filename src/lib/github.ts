@@ -22,3 +22,7 @@ export async function lastPush(repo: string): Promise<Date | null> {
 export function formatDate(date: Date): string {
   return date.toISOString().slice(0, 10).replaceAll('-', '.');
 }
+
+export function formatMonth(date: Date): string {
+  return date.toLocaleDateString('en-US', { month: 'long', year: 'numeric', timeZone: 'UTC' });
+}

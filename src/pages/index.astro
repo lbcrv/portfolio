@@ -2,7 +2,7 @@
 import { Image } from 'astro:assets';
 import Base from '../layouts/Base.astro';
 import { projects } from '../data/projects';
-import { lastPush, formatDate } from '../lib/github';
+import { lastPush, formatDate, formatMonth } from '../lib/github';
 
 const email = 'luisenbcarva@gmail.com';
 const github = 'https://github.com/lbcrv';
@@ -11,8 +11,8 @@ const revised = formatDate(new Date());
 ---
 
 <Base
-  title="Luis Enrique Bustamante / Full-stack developer"
-  description="Full-stack developer in Honduras building web apps and browser games with TypeScript, React, Next.js and Node. Open to junior and internship roles."
+  title="Luis Enrique Bustamante / Junior full-stack developer"
+  description="Software engineering student in Honduras building web apps with TypeScript, React, Next.js and Node. Looking for an internship or junior role in web development."
 >
   <div class="grid-bg" aria-hidden="true"></div>
   <a class="skip" href="#projects">Skip to projects</a>
@@ -35,26 +35,19 @@ const revised = formatDate(new Date());
           <h1 class="v name">Luis Enrique Bustamante</h1>
         </div>
         <dl>
-          <div class="row"><dt class="k mono">Role</dt><dd class="v">Full-stack developer</dd></div>
+          <div class="row"><dt class="k mono">Role</dt><dd class="v">Junior full-stack developer</dd></div>
+          <div class="row"><dt class="k mono">Study</dt><dd class="v">Software engineering student</dd></div>
           <div class="row"><dt class="k mono">Stack</dt><dd class="v">TypeScript, React, Next.js, Node</dd></div>
           <div class="row"><dt class="k mono">Based</dt><dd class="v">Honduras</dd></div>
-          <div class="row open"><dt class="k mono">Open to</dt><dd class="v">Junior and internship roles</dd></div>
+          <div class="row open"><dt class="k mono">Open to</dt><dd class="v">Internships and junior roles</dd></div>
         </dl>
       </div>
 
       <div class="about">
         <p class="lead">
-          I build web apps and browser games, from the game logic and APIs to the interface, and deploy
-          them myself. Three of them are live below.
+          I'm a software engineering student in Honduras, looking for an internship or junior role in web
+          development. I build web apps and finish them: the three below are live, and their code is public.
         </p>
-
-        <div class="now">
-          <p class="label mono">Currently building</p>
-          <p>
-            A website for <span class="redact" aria-hidden="true"></span><span class="sr">a client</span>.
-            Client name and details after launch.
-          </p>
-        </div>
 
         <ul class="contact">
           <li><a class="btn" href={`mailto:${email}`}>Email <span class="mono">{email}</span></a></li>
@@ -76,17 +69,14 @@ const revised = formatDate(new Date());
           <div class="body">
             <div class="title-row">
               <h3 id={`p-${p.repo}`}>{p.name}</h3>
-              <p class="meta mono">
-                <span class="status">Live</span>
-                {pushes[i] && <span>Last push {formatDate(pushes[i])}</span>}
-              </p>
+              <p class="meta mono"><span class="status">Live</span></p>
             </div>
 
             <p class="summary">{p.summary}</p>
 
             <div class="facts">
               <div>
-                <h4 class="mono">How it works</h4>
+                <h4 class="mono">Key decisions</h4>
                 <ul class="points">
                   {p.points.map((pt) => <li>{pt}</li>)}
                 </ul>
@@ -96,6 +86,12 @@ const revised = formatDate(new Date());
                 <p>{p.stack.join(', ')}</p>
                 <h4 class="mono">Languages</h4>
                 <p>{p.languages}</p>
+                {pushes[i] && (
+                  <>
+                    <h4 class="mono">Updated</h4>
+                    <p>{formatMonth(pushes[i])}</p>
+                  </>
+                )}
               </div>
             </div>
 
@@ -121,7 +117,7 @@ const revised = formatDate(new Date());
     <section id="contact" class="closing" aria-labelledby="contact-h">
       <h2 id="contact-h" class="mono">Contact</h2>
       <p>
-        I'm looking for a junior or internship role. Email me at{' '}
+        I'm looking for an internship or junior role in web development. Email me at{' '}
         <a href={`mailto:${email}`}>{email}</a>, or read more of my code on{' '}
         <a href={github}>GitHub</a>.
       </p>

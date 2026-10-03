@@ -100,12 +100,6 @@ main { max-width: var(--max); margin: 0 auto; }
 .about { display: flex; flex-direction: column; gap: 28px; }
 .lead { font-size: 22px; line-height: 1.45; max-width: 44ch; font-stretch: 92%; }
 
-.now { border-left: 1.5px solid var(--ink); padding-left: 16px; }
-.now .label { color: var(--mid); margin-bottom: 4px; }
-.redact {
-  display: inline-block; width: 7.5em; height: 0.95em; background: var(--ink);
-  vertical-align: -0.1em;
-}
 
 .contact { display: flex; gap: 12px; flex-wrap: wrap; }
 
@@ -218,6 +212,7 @@ footer.strip { border-top: 1px solid var(--ink); color: var(--mid); }
 .plate dl .row:nth-child(2) > * { animation-delay: 470ms; }
 .plate dl .row:nth-child(3) > * { animation-delay: 540ms; }
 .plate dl .row:nth-child(4) > * { animation-delay: 610ms; }
+.plate dl .row:nth-child(5) > * { animation-delay: 680ms; }
 
 @media (max-width: 960px) {
   .intro { grid-template-columns: 1fr; gap: 36px; }

@@ -21,11 +21,11 @@ export const projects: Project[] = [
     repo: 'interrogatorio',
     live: 'https://interrogatorio-five.vercel.app',
     summary:
-      'A detective game where a language model plays the three suspects and deterministic code runs everything else. You have 24 questions to work out who took the saint\'s crown before the procession leaves.',
+      'A detective game where you question three suspects played by a language model. I built it to find out whether an LLM could run a game\'s characters without being able to break the game.',
     points: [
-      'Each suspect\'s prompt holds only what that person knows, so the innocent ones cannot leak the solution.',
-      'The server rebuilds game state by replaying the turn log, so forged progress is rejected.',
-      'Every reply is screened in code before the player sees it.',
+      'The model only plays characters. A deterministic engine owns the case, the question budget and what counts as proof, so the game stays fair and testable.',
+      'Each suspect only knows their own story. The innocent ones never see the solution, so no prompt trick can make them reveal it.',
+      'It runs on a free API tier with a daily question limit per visitor, so it costs nothing to keep online.',
     ],
     stack: ['Next.js', 'TypeScript', 'Groq API'],
     languages: 'English, Spanish',
@@ -37,11 +37,11 @@ export const projects: Project[] = [
     repo: 'la-barra',
     live: 'https://la-barra-seven.vercel.app',
     summary:
-      'Cartoon 3D table football set in a Honduran corner shop. Play against a bot, with two players on one keyboard, or online with a room code.',
+      'A 3D table football game set in a Honduran corner shop. You can play against a bot, with two players on one keyboard, or online with a friend using a room code.',
     points: [
-      'A real-size table simulated with Rapier at 480 Hz, so hard kicks never pass through the ball.',
-      'Online play is peer to peer over WebRTC. The host runs the physics and streams snapshots 30 times a second.',
-      'Every model, texture and sound is generated in code. There are no asset files.',
+      'Online play needs no game server: the two browsers connect directly and the host\'s browser runs the match, so hosting costs nothing.',
+      'Real physics under the cartoon look, tuned so hard shots never pass through the ball.',
+      'All art and sound are generated in code, so there are no models or audio files to download.',
     ],
     stack: ['Next.js', 'React Three Fiber', 'Rapier', 'PeerJS', 'TypeScript'],
     languages: 'English, Spanish',
@@ -53,11 +53,11 @@ export const projects: Project[] = [
     repo: 'la-16',
     live: 'https://la-16.pages.dev',
     summary:
-      'Standings, fixtures and a season simulator for the Honduran Liga Nacional. Fans type in scores for upcoming games and watch the table change.',
+      'Standings, fixtures and a playoff simulator for Honduras\'s top football league. Fans can enter scores for upcoming games and see how the table would change.',
     points: [
-      'Estimates playoff odds by simulating the rest of the season 4,000 times with a Poisson goal model.',
-      'A scheduled GitHub Action pulls results on match days, and Cloudflare redeploys on each commit.',
-      'Works offline through a service worker. No framework and no build dependencies.',
+      'Results update on their own: a scheduled job checks for final scores on match days and publishes them without any manual work.',
+      'Playoff odds come from simulating the rest of the season thousands of times.',
+      'No framework and no build step, so it loads fast and works offline.',
     ],
     stack: ['JavaScript', 'GitHub Actions', 'Cloudflare Pages'],
     languages: 'Spanish',
