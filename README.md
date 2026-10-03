@@ -18,10 +18,12 @@ npm run build    # output in dist/
 
 The "Last push" date for each project is read from the GitHub API during the build. If the API is unreachable, the date is left out and the build still succeeds. Set `GITHUB_TOKEN` in the build environment to avoid rate limits.
 
-## Deploying on Cloudflare Pages
+## Deploying on Cloudflare
+
+Deployed as a static-assets Worker connected to this repo (Workers Builds). Every push to `main` builds and deploys.
 
 - Build command: `npm run build`
-- Output directory: `dist`
+- Deploy command: `npx wrangler deploy` (config in `wrangler.jsonc`; the Worker name must match the Cloudflare project name)
 - Node version comes from `.node-version`.
 - Security headers and caching rules are in `public/_headers`. The Content-Security-Policy allows no inline code, so any future script, analytics or embed needs its source added there. On a custom domain, turn off Cloudflare's Email Address Obfuscation or allow its script, otherwise the email link breaks.
 
