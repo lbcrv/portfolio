@@ -169,6 +169,7 @@ main { max-width: var(--max); margin: 0 auto; }
 }
 
 .links { display: flex; gap: 12px; flex-wrap: wrap; }
+.note { margin-top: 12px; font-size: 15px; color: var(--mid); }
 
 /* screenshots: photocopied until the entry is hovered or focused */
 .shot { position: relative; align-self: start; border: 1.5px solid var(--ink); }

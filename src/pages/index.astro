@@ -46,7 +46,8 @@ const revised = formatDate(new Date());
       <div class="about">
         <p class="lead">
           I'm a software engineering student in Honduras, looking for an internship or junior role in web
-          development. I build web apps and finish them: the three below are live, and their code is public.
+          development. I build web apps and finish them: three of the projects below are live with public code,
+          and the newest is a working demo.
         </p>
 
         <ul class="contact">
@@ -69,7 +70,7 @@ const revised = formatDate(new Date());
           <div class="body">
             <div class="title-row">
               <h3 id={`p-${p.repo}`}>{p.name}</h3>
-              <p class="meta mono"><span class="status">Live</span></p>
+              <p class="meta mono"><span class="status">{p.status}</span></p>
             </div>
 
             <p class="summary">{p.summary}</p>
@@ -96,9 +97,10 @@ const revised = formatDate(new Date());
             </div>
 
             <p class="links">
-              <a class="btn" href={p.live}>Open live build</a>
-              <a class="btn" href={`${github}/${p.repo}`}>Source code</a>
+              <a class="btn" href={p.live}>{p.status === 'Demo' ? 'Open the demo' : 'Open live build'}</a>
+              {p.code === 'public' && <a class="btn" href={`${github}/${p.repo}`}>Source code</a>}
             </p>
+            {p.code === 'private' && <p class="note">The code is private for now.</p>}
           </div>
 
           <figure class="shot">
